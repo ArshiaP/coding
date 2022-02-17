@@ -48,25 +48,17 @@ int main() {
       if (get<0>(table[board[row - 1][col - 1]]).find(row) == get<0>(table[board[row - 1][col - 1]]).end()) {
         get<0>(table[board[row - 1][col - 1]]).insert(row);
       } else {
-        // cout << row << " " << col << endl;
-        // cout << "false";
         return 0;
       }
       if (get<1>(table[board[row - 1][col - 1]]).find(col) == get<1>(table[board[row - 1][col - 1]]).end()) {
         get<1>(table[board[row - 1][col - 1]]).insert(col);
       } else {
-        // cout << row << " " << col << endl;
-        // cout << "false";
         return 0;
       }
-
-      // cout<<"small"<<smolDibbaCount<<" "<<"bigDibbaCount"<<bigDibbaCount<<endl;
 
       if (get<2>(table[board[row - 1][col - 1]]).find(bigDibbaCount) == get<2>(table[board[row - 1][col - 1]]).end()) {
         get<2>(table[board[row - 1][col - 1]]).insert(bigDibbaCount);
       } else {
-        // cout << row << " " << col << endl;
-        // cout << "false";
         return 0;
       }
       smolDibbaCount++;
@@ -77,10 +69,33 @@ int main() {
       } else if (smolDibbaCount % 3== 0) {
         bigDibbaCount++;
       }
-      // cout<<"small "<<smolDibbaCount<<" "<<"big "<<bigDibbaCount<<" "<<board[row-1][col-1]<<endl;
     }
-    // cout<<endl;
   }
 
   cout << true;
 }
+
+class Solution
+{
+public:
+    bool isValidSudoku(vector<vector<char> > &board)
+    {
+        //used1[0][4] =1 means that in the 0th row, 5 occurs.
+        //used2 for columns
+        //used3 for grids
+        int used1[9][9] = {0}, used2[9][9] = {0}, used3[9][9] = {0};
+        
+        for(int i = 0; i < board.size(); ++ i)
+            for(int j = 0; j < board[i].size(); ++ j)
+                if(board[i][j] != '.')
+                {
+                    int num = board[i][j] - '0' - 1;
+                    int k = i / 3 * 3 + j / 3;
+                    if(used1[i][num] || used2[j][num] || used3[k][num])
+                        return false;
+                    used1[i][num] = used2[j][num] = used3[k][num] = 1;
+                }
+        
+        return true;
+    }
+};
