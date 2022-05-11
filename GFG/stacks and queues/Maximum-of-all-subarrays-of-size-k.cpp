@@ -1,6 +1,6 @@
+//https://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k3101/1#
 #include <bits/stdc++.h>
 using namespace std;
-
 
 //pop from the back of the deque till curr ele>q.back(). if q.front() is outside the window, pop. Push the curr ele. 
 //this removes useless elements of the window and keeps only what could be the maximum element in that window
