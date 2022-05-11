@@ -3,6 +3,7 @@ using namespace std;
 
 
 //pop from the back of the deque till curr ele>q.back(). if q.front() is outside the window, pop. Push the curr ele. 
+//this removes useless elements of the window and keeps only what could be the maximum element in that window
 class Solution {
  public:
   vector<int> max_of_subarrays(int *arr, int n, int k) {
