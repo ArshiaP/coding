@@ -5,8 +5,31 @@ using namespace std;
 
 class Solution {
  public:
+
+  void traverse(vector<vector<int>>& image,int newColor,int og, int sr, int sc){
+    if(sr<0|| sc<0 || sr>image.size()-1 || sc>image[0].size()-1){
+      return;
+    }
+    if(image[sr][sc] == og){
+      image[sr][sc] = -1;
+      traverse(image,newColor,og,sr-1,sc);
+      traverse(image,newColor,og,sr+1,sc);
+      traverse(image,newColor,og,sr,sc-1);
+      traverse(image,newColor,og,sr,sc+1);
+    }
+  }
+
   vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
-    // Code here
+   int og  = image[sr][sc];
+   traverse(image,newColor,og,sr,sc);
+   for(int i = 0;i<image.size();i++){
+    for(int j=0;j<image[0].size();j++){
+      if(image[i][j]==-1){
+        image[i][j] = newColor;
+      }
+    }
+   }
+   return image;
   }
 };
 
