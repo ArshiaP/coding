@@ -5,7 +5,6 @@ using namespace std;
 
 class Solution {
  public:
-
   long long int solve(int x, int y,vector<int>& store){
     if(x<=0){
       return -1;
@@ -19,7 +18,7 @@ class Solution {
       store[i] = i;
     }
     for(int i=4;i<=N;i++){
-      int x = i-3;
+      int x = i-3; 
       int y = 2;
       long long int ans = solve(x,y,store);
       store[i] = max(ans,(long long int)i);
