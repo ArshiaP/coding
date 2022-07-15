@@ -1,22 +1,11 @@
 // https://practice.geeksforgeeks.org/problems/relative-sorting4323/1
 
-// { Driver Code Starts
-// Initial template for C++
-
 #include <bits/stdc++.h>
 using namespace std;
 
-// } Driver Code Ends
-// User function template in C++
-
 class Solution {
  public:
-  // A1[] : the input array-1
-  // N : size of the array A1[]
-  // A2[] : the input array-2
-  // M : size of the array A2[]
-
-  // Function to sort an array according to the other array.
+  
   vector<int> sortA1ByA2(vector<int> A1, int n, vector<int> A2, int m) {
     vector<int> ans;
     unordered_map<int, int> map;
@@ -44,8 +33,6 @@ class Solution {
   }
 };
 
-// { Driver Code Starts.
-
 int main(int argc, char *argv[]) {
   int n, m;
   cin >> n >> m;
@@ -71,4 +58,3 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
-// } Driver Code Ends
