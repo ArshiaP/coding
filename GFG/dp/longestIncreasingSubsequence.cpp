@@ -7,45 +7,36 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution {
- public:
-  // Function to find length of longest increasing subsequence.
-  int longestSubsequence(int n, int a[]) {
-    vector<int> ans (n,0);
-    int largest;
-    for(int i = 0; i< n ; i++){
-      largest = 0;
-      for(int j = 0; j< i ; j++){
-        if(a[j]<a[i] && ans[j]>largest){
-          largest = ans[j];
+public:
+    int ans = 0;
+    void solve(int s[], int m, int n, int sum, int i) {
+        if (sum > n) {
+            return;
+        } else if (sum == n) {
+            ans++;
+            return;
+        } else {
+            for (; i < m; i++) {
+                solve(s, m, n, sum + s[i], i);
+            }
         }
-      }
-      ans[i] = largest +1;
     }
-    largest = 0;
-    for(int i=0;i<n;i++){
-      if(ans[i]>largest){
-        largest = ans[i];
-      }
+    long long int count(int S[], int m, int n) {
+        solve(S, m, n, 0, 0);
+        return ans;
     }
-    return largest;
-  }
 };
 
 //{ Driver Code Starts.
 int main() {
-  // taking total testcases
-  int n;
+    int n, m;
+    cin >> n >> m;
+    int arr[m];
+    for (int i = 0; i < m; i++) cin >> arr[i];
+    Solution ob;
+    cout << ob.count(arr, m, n) << endl;
 
-  // taking size of array
-  cin >> n;
-  int a[n];
-
-  // inserting elements to the array
-  for (int i = 0; i < n; i++)
-    cin >> a[i];
-  Solution ob;
-  // calling method longestSubsequence()
-  cout << ob.longestSubsequence(n, a) << endl;
+    return 0;
 }
 
 // } Driver Code Ends
